@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f8dce9">
+<title>Discover Your Kidneys!</title>
+<style>
+:root{--pink:#e88db5;--deep:#9c5278;--pale:#fff4f8;--ink:#493746;--mint:#dff3eb;--cream:#fffaf2}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 5%,#fff 0 7%,transparent 28%),linear-gradient(145deg,#fce8f0,#f8f1f7 55%,#eaf5f0);min-height:100vh;padding:24px 14px}
+main{max-width:760px;margin:auto}
+header{text-align:center;padding:22px 12px 16px}
+.eyebrow{display:inline-block;background:#fff9;border:1px solid #fff;padding:7px 13px;border-radius:30px;color:var(--deep);font-size:.82rem;font-weight:700;letter-spacing:.04em}
+h1{font-size:clamp(2rem,7vw,3.3rem);line-height:1.05;margin:16px 0 10px;color:#a6537e}
+.subtitle{max-width:540px;margin:auto;line-height:1.6;color:#765c70}
+.mascot{font-size:3.4rem;margin:12px 0 0;filter:drop-shadow(0 5px 4px #c77b9a33)}
+.panel{background:#ffffffd9;border:1px solid #fff;border-radius:26px;padding:clamp(18px,4vw,30px);box-shadow:0 14px 40px #91587516;backdrop-filter:blur(8px)}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;color:#91617b;font-size:.9rem;font-weight:700}
+.counter{background:#fae5ee;padding:7px 12px;border-radius:30px}
+.card{margin:18px 0 16px;background:linear-gradient(135deg,#fff8fb,#f8f0fa);border:1px solid #f3dce7;border-radius:22px;padding:24px;min-height:270px}
+.card-icon{font-size:2.5rem}
+h2{color:#a6537e;margin:10px 0 12px;font-size:1.65rem}
+.card p{line-height:1.7;margin:0 0 12px}
+.card ul{padding-left:22px;line-height:1.8;margin:8px 0}
+.fact{background:#eaf5ef;border-left:4px solid #85bba1;border-radius:12px;padding:12px 14px;margin-top:16px;line-height:1.6}
+.controls{display:flex;gap:10px;flex-wrap:wrap}
+button{border:0;border-radius:15px;padding:14px 18px;font:inherit;font-weight:750;cursor:pointer;transition:transform .15s,filter .15s}
+button:hover{transform:translateY(-2px);filter:brightness(.98)}
+.primary{background:linear-gradient(135deg,#e88db5,#cf76a2);color:white;flex:1;box-shadow:0 7px 18px #d77da333}
+.secondary{background:#f7eaf0;color:#965777}
+.hint{text-align:center;color:#896e81;font-size:.85rem;line-height:1.6;margin:15px 5px 0}
+footer{text-align:center;padding:20px 8px;color:#896e81;font-size:.82rem;line-height:1.6}
+.small{font-size:.82rem;color:#896e81}
+@media(min-width:600px){.card{padding:30px;min-height:290px}}
+</style>
+</head>
+<body>
+<main>
+<header>
+ <span class="eyebrow">A LITTLE GUIDE TO KIDNEY HEALTH</span>
+ <div class="mascot" aria-hidden="true">🫘💗🫘</div>
+ <h1>Discover Your Kidneys!</h1>
+ <p class="subtitle">Five little cards, helpful facts and simple tips to understand your kidneys and protect your health.</p>
+</header>
+<section class="panel" aria-live="polite">
+ <div class="topline"><span>✨ Your kidney-care collection</span><span class="counter" id="counter">Card 1 of 5</span></div>
+ <article class="card" id="card">
+  <div class="card-icon">🫘</div>
+  <h2>Meet Your Kidneys</h2>
+  <p>Your kidneys are two bean-shaped organs located near the middle of your back, just below your rib cage.</p>
+  <ul><li>They filter waste and extra water from your blood.</li><li>They help balance salts and minerals.</li><li>They help control blood pressure and support red blood cell production.</li></ul>
+  <div class="fact"><strong>Did you know?</strong> Healthy kidneys filter your blood continuously, helping keep your body in balance.</div>
+ </article>
+ <div class="controls">
+  <button class="secondary" id="prev" type="button">← Previous</button>
+  <button class="primary" id="random" type="button">🎲 Pick a Random Card</button>
+  <button class="secondary" id="next" type="button">Next →</button>
+ </div>
+ <p class="hint">Tap the pink button to discover a card at random. You can also browse all five cards using the arrows.</p>
+</section>
+<footer>💗 Learn, share, and take care of your kidneys.<br><span class="small">Educational information only. It does not replace advice from a healthcare professional.</span></footer>
+</main>
+<script>
+const cards = [
+{icon:"🫘",title:"Meet Your Kidneys",body:"Your kidneys are two bean-shaped organs located near the middle of your back, just below your rib cage.",items:["They filter waste and extra water from your blood.","They help balance salts and minerals in the body.","They help control blood pressure and support red blood cell production."],fact:"Healthy kidneys filter your blood continuously, helping keep your body in balance."},
+{icon:"🩺",title:"What Is Kidney Failure?",body:"Kidney failure happens when the kidneys can no longer work well enough to remove waste and extra fluid from the blood.",items:["It may develop suddenly (acute kidney injury) or gradually over time (chronic kidney disease).","Common causes include diabetes and high blood pressure.","Advanced kidney failure may require dialysis or a kidney transplant."],fact:"Early detection and treatment can help slow the progression of chronic kidney disease."},
+{icon:"🔎",title:"Warning Signs",body:"Kidney problems may not cause clear symptoms in the early stages. That is why check-ups are important, especially for people at higher risk.",items:["Possible signs include swollen ankles or feet.","Some people notice changes in urination or unusual tiredness.","Nausea, poor appetite or shortness of breath can occur in advanced disease."],fact:"A blood test (eGFR) and a urine test for albumin can help detect kidney disease. Only a healthcare professional can interpret results."},
+{icon:"🌷",title:"Protect Your Kidneys",body:"Small healthy habits can support kidney health and lower the risk of kidney disease.",items:["Keep a healthy blood pressure and blood sugar level.","Choose balanced meals and avoid too much salt.","Stay physically active and avoid smoking.","Drink enough water for your needs, unless your clinician has advised a fluid limit.","Do not overuse painkillers such as ibuprofen; ask a healthcare professional about medicines."],fact:"If you have diabetes, high blood pressure, heart disease or a family history of kidney disease, ask your healthcare professional whether you need screening."},
+{icon:"🤝",title:"Kidney Donation",body:"A kidney transplant can be a treatment option for some people with advanced kidney failure. A kidney may come from a living donor or a deceased donor.",items:["Potential donors undergo careful medical and compatibility assessments.","A transplant can improve quality of life, but it is major surgery and is not suitable for everyone.","After transplantation, recipients need regular follow-up and medicines to prevent rejection."],fact:"Living kidney donation is carefully evaluated to protect the donor's health. Donation rules and procedures vary by country."}
+];
+let current=0;
+const card=document.getElementById("card"), counter=document.getElementById("counter");
+function render(){
+ const c=cards[current];
+ card.innerHTML=`<div class="card-icon">${c.icon}</div><h2>${c.title}</h2><p>${c.body}</p><ul>${c.items.map(x=>`<li>${x}</li>`).join("")}</ul><div class="fact"><strong>Good to know:</strong> ${c.fact}</div>`;
+ counter.textContent=`Card ${current+1} of ${cards.length}`;
+}
+function move(step){current=(current+step+cards.length)%cards.length;render();}
+document.getElementById("prev").addEventListener("click",()=>move(-1));
+document.getElementById("next").addEventListener("click",()=>move(1));
+document.getElementById("random").addEventListener("click",()=>{
+ let next; do{next=Math.floor(Math.random()*cards.length)}while(cards.length>1&&next===current);
+ current=next;render();
+});
+</script>
+</body>
+</html>
